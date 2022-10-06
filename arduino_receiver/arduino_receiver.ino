@@ -114,6 +114,7 @@ void loop()
       digitalWrite(BLUE2, HIGH);
       delay(1000);
       turnOffAll(); 
+      delay(1000);
     }
     else if (letter.equals("h")) {
       //Turn yellows on first, then short blue LED. 
