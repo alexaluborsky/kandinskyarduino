@@ -14,7 +14,7 @@ void turnOffAll() {
   digitalWrite(RED2, LOW);
   digitalWrite(BLUE2, LOW);
   digitalWrite(YELLOW1, LOW);
-  digitalWrite(buzzer, LOW);
+  noTone(buzzer);
   digitalWrite(BLUE1, LOW);
   digitalWrite(YELLOW2,LOW);
 }
@@ -31,7 +31,7 @@ void setup()
   pinMode(10, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(buzzer, OUTPUT); // Set buzzer - pin 9 as an output
-  tone(buzzer, 1000); // Send 1KHz sound signal...     
+  noTone(buzzer); // Send 1KHz sound signal...     
 
 }
 
@@ -43,6 +43,7 @@ void loop()
   if (Serial.available() > 0) {
     // read the incoming string:
     String letter = Serial.readString();
+    letter.toLowerCase();
 
     // prints the received data
     Serial.print("I received: ");
@@ -59,8 +60,6 @@ void loop()
       delay(500);
       turnOffAll();
     } 
-    
-    if (letter.equals("a") || letter.equals("A"));
 
     else if (letter.equals("b")) {
       //Turn pin 10 HIGH (ON). This will represent the yellow LED.
@@ -206,6 +205,7 @@ void loop()
   else if (letter.equals("s")) {
     //Only tone -- 2 tones -- like a wave 
     digitalWrite(buzzer, HIGH);
+    turnOffAll();
   }
   else if (letter.equals("t")) {
     //Neutral, so use white LED
@@ -215,6 +215,7 @@ void loop()
     digitalWrite(WHITE, HIGH);
     delay(250);
     digitalWrite(WHITE, LOW);
+    turnOffAll();
   }
   else if (letter.equals("u")) {
     digitalWrite(buzzer,HIGH);
